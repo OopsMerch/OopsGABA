@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Исчерпывающий отчет: Габа улун «Алишань»</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Open+Sans:wght@300;400;600&display=swap');
+body { 
+    font-family: 'Open Sans', sans-serif; 
+    background-color: #faf8f5; 
+    color: #292524; 
+    touch-action: pan-y;
+    -webkit-text-size-adjust: 100%;
+}
+h1, h2, h3, h4, .font-serif-custom { font-family: 'Merriweather', serif; }
+.chart-container { position: relative; width: 100%; height: 280px; }
+.tea-card { transition: all 0.3s ease; }
+.bg-pattern { background-image: radial-gradient(#d6d3d1 1px, transparent 1px); background-size: 20px 20px; }
+.article-text { font-size: 0.95rem; line-height: 1.6; color: #44403c; margin-bottom: 1.25rem; text-align: left; }
+
+/* Кнопки переключения раундов */
+.step-btn { 
+    background-color: #f5f5f4; 
+    color: #5c5346; 
+    border-color: #e7e5e4; 
+    transition: all 0.2s ease;
+}
+.step-btn.active { 
+    background-color: #d97706; 
+    color: white; 
+    border-color: #d97706; 
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Плавающая кнопка (FAB) для мобильных - без тени */
+.fab {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 50;
+    background-color: #b45309;
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+}
+.fab:active { transform: scale(0.95); background-color: #92400e; }
+</style>
+</head>
+<body class="antialiased selection:bg-amber-200 selection:text-amber-900 pb-20">
+
+<button id="scroll-fab" class="fab" aria-label="Пульт заваривания">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-7 h-7">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+    </svg>
+</button>
+
+<header class="bg-[#1c1917] text-[#f5f5f4] py-14 px-5 relative overflow-hidden shadow-md">
+    <div class="absolute inset-0 opacity-10 bg-pattern"></div>
+    <div class="max-w-3xl mx-auto relative z-10 text-center">
+        <div class="text-amber-500 mb-4 text-4xl drop-shadow-md">🫖</div>
+        <h1 class="text-2xl sm:text-3xl font-bold mb-4 leading-snug">Исчерпывающий аналитический отчет:<br><span class="text-amber-500">Габа улун «Алишань»</span></h1>
+        <h2 class="text-sm sm:text-base text-stone-400 italic px-2">Нейрофизиологический профиль и протокол экстракции</h2>
+    </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-5 py-8 space-y-12">
+
+    <section id="introduction">
+        <h2 class="text-xl font-serif-custom text-stone-800 mb-4 border-b-2 border-amber-600 pb-2 inline-block">Введение в биохимическую парадигму</h2>
+        <p class="article-text">Современная чайная индустрия переживает фундаментальный сдвиг в сторону функциональных продуктов, где тысячелетние аграрные традиции пересекаются с передовыми достижениями нейробиологии и биохакинга. В авангарде этого движения находится Габа-чай - уникальная категория чайного листа, прошедшая специфическую технологическую обработку для максимизации содержания гамма-аминомасляной кислоты (ГАМК/GABA). Технология, впервые разработанная в 1987 году в Японии исследовательской группой под руководством доктора Тодзиро Цусиды в Национальном исследовательском институте чая, изначально предназначалась для создания органического продукта, способствующего естественному снижению артериального давления у пациентов с гипертензией. Однако клинические и эмпирические результаты превзошли первоначальные ожидания, продемонстрировав мощнейший потенциал этого напитка в сфере модуляции стресса, улучшения когнитивных функций и общей стабилизации центральной нервной системы.</p>
+        <p class="article-text">Впоследствии данная технология была экспортирована на остров Тайвань, где благодаря уникальным терруарным условиям и высочайшему уровню местной чайной инженерии она достигла своего абсолютного пика. Объектом настоящего подробного исследования выступает пропеченный Габа улун «Алишань» высшего сорта, представленный на российском рынке проектом «Чайная мастерская». Данный продукт представляет собой сложный симбиоз высокогорного сырья, многоступенчатой анаэробной ферментации и длительной финальной прожарки на древесных углях, что выделяет его из общей массы коммерческих Габа-чаев и требует глубокого понимания процессов для правильной экстракции его потенциала.</p>
+    </section>
+
+    <section id="terroir">
+        <h2 class="text-xl font-serif-custom text-stone-800 mb-4 border-b-2 border-amber-600 pb-2 inline-block">Терруарный потенциал: Алишань</h2>
+        <p class="article-text">Качество любого чая начинается с его ботанического происхождения и условий произрастания. Рассматриваемый лот производится из сырья, собранного в природном заповеднике Алишань, расположенном в центральной части острова Тайвань. Ключевым фактором, определяющим экстраординарные характеристики этого чая, является высота произрастания, составляющая 1350 метров над уровнем моря. В чайной терминологии такие чаи классифицируются как «Гао Шань» (высокогорные улуны), что само по себе является маркером премиального качества.</p>
+        <p class="article-text">Физика высокогорного климата напрямую влияет на биохимию чайного куста (Camellia sinensis). На высоте 1350 метров растения регулярно подвергаются воздействию густых туманов, которые рассеивают прямые солнечные лучи, обеспечивая естественное затенение. В сочетании со значительными суточными перепадами температур это приводит к резкому замедлению процессов фотосинтеза и клеточного метаболизма в листьях. Растение, находясь в состоянии контролируемого климатического стресса, направляет свои ресурсы не на бурный рост вегетативной массы, а на накопление защитных азотистых соединений. В результате лист накапливает беспрецедентно высокое количество аминокислот, в первую очередь L-теанина и глутаминовой кислоты, при одновременном снижении концентрации горьких катехинов. Именно этот богатейший пул природной глутаминовой кислоты становится фундаментальным субстратом для последующего синтеза молекул ГАМК. Попытки произвести высококачественную Габу из равнинного сырья (где преобладают полифенолы, а не аминокислоты) неизбежно приводят к получению плоского, излишне кислотного или терпкого напитка. Алишаньский терруар, таким образом, является не просто географическим маркером, а обязательным условием для создания премиального Габа-улуна.</p>
+    </section>
+
+    <section id="technology">
+        <h2 class="text-xl font-serif-custom text-stone-800 mb-4 border-b-2 border-amber-600 pb-2 inline-block">Технологический дуализм</h2>
+        <p class="article-text">Трансформация высокогорного сырья в пропеченный Габа-улун требует применения двух сложнейших технологических процессов, каждый из которых кардинально меняет химический состав и органолептические свойства листа.</p>
+        <p class="article-text">Первый этап - вакуумная анаэробная ферментация. После сбора и предварительного завяливания чайные листья помещаются в специализированные герметичные барокамеры, известные как «ян ян цзи». Из этих камер полностью откачивается кислород, место которого занимает газообразный азот. В этой бескислородной среде чайный лист выдерживается на протяжении нескольких циклов, общая продолжительность которых может достигать 12 часов и более. Отсутствие кислорода запускает в клетках листа ферментативное декарбоксилирование - процесс, при котором от молекулы глутаминовой кислоты отщепляется карбоксильная группа, в результате чего образуется гамма-аминомасляная кислота. Для того чтобы продукт имел юридическое и физиологическое право называться Габа-чаем, концентрация ГАМК должна превышать базовый порог в 150 мг на 100 грамм сухого листа, что почти в два раза выше естественных значений для обычного чая. Этот процесс требует ювелирной точности: передержка листа в азотной среде может привести к появлению навязчивого запаха «квашеной капусты» или излишней кислотности, что часто встречается в низкосортных образцах.</p>
+        <p class="article-text">Второй, не менее важный этап, определяющий специфику именно этого лота от «Чайной мастерской», - это длительный прогрев на древесных углях (процесс Хун Пэй). Большинство коммерческих Габа-улунов остаются светлыми (зелеными), сохраняя свежие, сливочно-цветочные ноты. Однако рассматриваемый чай подвергается многочасовому, иногда многодневному томлению в бамбуковых корзинах над тлеющими углями. Термическое воздействие запускает реакцию Майяра - химическое взаимодействие между аминокислотами и редуцирующими сахарами, а также вызывает карамелизацию полисахаридов. Этот процесс не просто удаляет остаточную влагу, консервируя чай для длительного хранения (срок годности достигает 1095 дней) ; он вносит серьезнейшие коррективы во вкусовой профиль, переводя чай в категорию темных, преимущественно «мужских» напитков с густым, десертно-дымным характером. Пропекание скругляет природную кислинку Габы, превращая ее в благородную фруктовую сладость, напоминающую выдержанный коньяк или сухофрукты.</p>
+    </section>
+
+    <section id="neuropharmacology">
+        <h2 class="text-xl font-serif-custom text-stone-800 mb-4 border-b-2 border-amber-600 pb-2 inline-block">Нейрофармакология организма</h2>
+        <p class="article-text">Понимание ценности пропеченного Габа улуна «Алишань» невозможно без глубокого погружения в его нейрофармакологические свойства. Гамма-аминомасляная кислота является основным тормозным нейромедиатором центральной нервной системы человека. В здоровом мозге ГАМК функционирует как биологический диммер, который приглушает избыточную активность нейронов, блокируя передачу специфических стрессовых сигналов и предотвращая гипервозбуждение нервных клеток. В условиях современного хронического стресса собственная выработка ГАМК часто истощается, что приводит к тревожным расстройствам, бессоннице, мышечным спазмам и неспособности к глубокой концентрации.</p>
+        <p class="article-text">Экзогенная ГАМК, поступающая в организм при употреблении данного чая, вступает во взаимодействие с периферической нервной системой. В научном сообществе долгие годы велась дискуссия о том, способна ли молекула ГАМК преодолевать гематоэнцефалический барьер (ГЭБ) для прямого воздействия на мозг. Новейшие исследования в области микробиома и нейрогастроэнтерологии показывают, что пероральный прием ГАМК оказывает мощное релаксирующее воздействие через энтеральную нервную систему желудочно-кишечного тракта. Воздействуя на рецепторы в кишечнике, молекулы передают сигнал блуждающему нерву, который, в свою очередь, модулирует активность коры головного мозга, снижая уровень тревожности и вызывая чувство глубокого телесного покоя.</p>
+        <p class="article-text">Однако физиологическое чудо тайваньского высокогорного Габа-чая заключается не в изолированной ГАМК, а в ее мощной синергии с L-теанином. L-теанин - это аминокислота, эксклюзивно присутствующая в чайном растении и накапливающаяся в рекордных количествах именно в высокогорном сырье Алишаня. В отличие от ГАМК, L-теанин легко преодолевает гематоэнцефалический барьер и напрямую стимулирует генерацию альфа-волн в головном мозге. Альфа-ритмы характерны для состояния глубокой медитации или фазы, предшествующей засыпанию: они характеризуются абсолютным мышечным расслаблением при сохранении кристально ясного, сфокусированного сознания. Комбинация тормозного эффекта ГАМК и модулирующего влияния L-теанина создает уникальное состояние, которое титестеры описывают как «третий уровень» - снятие суеты, усталости и напряжения без побочного эффекта седативной сонливости. Напиток освежает восприятие, очищает мысли и дает мягкий, устойчивый заряд бодрости, позволяющий справляться со сложными интеллектуальными задачами без выработки кортизола.</p>
+
+        <div class="overflow-x-auto mt-6 mb-6 rounded-lg shadow-sm border border-stone-200">
+            <table class="w-full text-left bg-white text-sm whitespace-nowrap md:whitespace-normal">
+                <thead class="bg-stone-800 text-stone-100">
+                    <tr>
+                        <th class="p-3 font-bold border-r border-stone-700">Компонент</th>
+                        <th class="p-3 font-bold border-r border-stone-700">Происхождение</th>
+                        <th class="p-3 font-bold">Эффект</th>
+                    </tr>
+                </thead>
+                <tbody class="text-stone-700">
+                    <tr class="border-b border-stone-200">
+                        <td class="p-3 font-semibold border-r border-stone-200">GABA (ГАМК)</td>
+                        <td class="p-3 border-r border-stone-200">Анаэробное декарбоксилирование.</td>
+                        <td class="p-3">Снижение тревожности, релакс.</td>
+                    </tr>
+                    <tr class="border-b border-stone-200">
+                        <td class="p-3 font-semibold border-r border-stone-200">L-Теанин</td>
+                        <td class="p-3 border-r border-stone-200">Накопление в горах Алишань.</td>
+                        <td class="p-3">Генерация альфа-волн, концентрация.</td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 font-semibold border-r border-stone-200">Катехины</td>
+                        <td class="p-3 border-r border-stone-200">Природный лист Camellia sinensis.</td>
+                        <td class="p-3">Антиоксидантная защита тканей.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="organoleptics">
+        <h2 class="text-xl font-serif-custom text-stone-800 mb-4 border-b-2 border-amber-600 pb-2 inline-block">Органолептическая архитектура</h2>
+        <p class="article-text">Специфика пропеченного Габа улуна «Алишань» от «Чайной мастерской» заключается в его многомерной органолептике, которая бросает вызов традиционным представлениям о светлых тайваньских чаях. Внешний вид сухого чая представляет собой крупные, увесистые и очень плотные комочки сферической скрутки. Листья сохраняют небольшие черенки, что является классическим маркером качественного тайваньского улуна; эти черенки содержат запасы аминокислот и сахаров, которые при заваривании придают настою густую, маслянистую плотность. Цвет сухого листа варьируется от темно-коричневого до серо-каштанового, что свидетельствует о глубоком прогреве на углях.</p>
+        <p class="article-text">Аромат сухого чая сложен, ярок и требует внимательного изучения. При первичном ознакомлении доминируют тепло-сладковатые, пряно-фруктовые ноты с отчетливым медовым акцентом. Если чай согреть дыханием в разогретой посуде, он мгновенно раскрывается мощной нотой обжаренных семечек, печеного яблока, горячего бисквита и характерной для Габы насыщенной ягодной кислинкой.</p>
+        <p class="article-text">Аромат самого напитка обладает бархатистой текстурой. С каждым новым проливом дымные оттенки с легкими нотами благородного табака и восточных специй дополняются теплыми ароматами копчености, чернослива и темной карамели. Вкусовой профиль (тело чая) описывается как мягкий, богатый и шелковистый. Прожарка нивелирует излишнюю резкость, создавая плотный, маслянистый настой. Дегустационная палитра переливается множеством оттенков: здесь присутствует сладковатая ореховая терпкость, ноты печеного батата и спелого банана, легкая цветочная кислинка, переходящая в медово-сливовые, коньячные и шоколадные тона. Завершается композиция тем, что в китайской чайной традиции называют «Хуэй Гань» (возвращающаяся сладость) - долгим, объемным, обволакивающим послевкусием с приятной фруктовой свежестью, деликатной дымностью и легким ментоловым «холодком» на корне языка.</p>
+    </section>
+
+    <section id="preparation" class="bg-white p-5 rounded-2xl shadow-sm border border-stone-200 mt-8 scroll-mt-6">
+        <h2 class="text-xl font-serif-custom text-stone-800 mb-4 text-center">Физика и химия экстракции</h2>
+        <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="bg-stone-50 p-3 rounded-xl border border-stone-100">
+                <div class="text-2xl mb-1">⚖️</div>
+                <div class="font-bold text-sm text-stone-800">10 грамм</div>
+                <div class="text-xs text-stone-500">Сухого листа</div>
+            </div>
+            <div class="bg-stone-50 p-3 rounded-xl border border-stone-100">
+                <div class="text-2xl mb-1">💧</div>
+                <div class="font-bold text-sm text-stone-800">< 100 ppm</div>
+                <div class="text-xs text-stone-500">Мягкая вода</div>
+            </div>
+            <div class="bg-stone-50 p-3 rounded-xl border border-stone-100">
+                <div class="text-2xl mb-1">🌡️</div>
+                <div class="font-bold text-sm text-stone-800">90-95°C</div>
+                <div class="text-xs text-stone-500">Температура</div>
+            </div>
+            <div class="bg-stone-50 p-3 rounded-xl border border-stone-100">
+                <div class="text-2xl mb-1">⏳</div>
+                <div class="font-bold text-sm text-stone-800">1.2 литра</div>
+                <div class="text-xs text-stone-500">На двоих</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interactive-brewing" class="bg-white rounded-2xl shadow-lg border border-stone-200 overflow-hidden scroll-mt-6">
+        <div class="bg-amber-600 text-white p-4 text-center">
+            <h2 class="text-xl font-serif-custom font-bold">Алгоритм заваривания</h2>
+            <p class="text-[10px] opacity-90 mt-1 uppercase tracking-widest">Протокол Hard Mode на двоих</p>
+        </div>
+        
+        <div class="p-4 bg-stone-50">
+            <p class="text-xs font-bold text-amber-700 mb-3 text-center">Инициация: прогреть типод кипятком, засыпать лист, вдохнуть аромат.</p>
+            <div class="flex flex-col gap-2">
+                <button class="step-btn active w-full py-3 rounded-lg border font-bold text-sm" data-step="0">
+                    0. Промывка
+                </button>
+                <button class="step-btn w-full py-3 rounded-lg border font-bold text-sm" data-step="1">
+                    1. Раунд "Разгон"
+                </button>
+                <button class="step-btn w-full py-3 rounded-lg border font-bold text-sm" data-step="2">
+                    2. Раунд "Пик ГАМК"
+                </button>
+                <button class="step-btn w-full py-3 rounded-lg border font-bold text-sm" data-step="3">
+                    3. Раунд "Финал"
+                </button>
+            </div>
+        </div>
+
+        <div class="p-5 flex flex-col">
+            <div class="flex gap-3 mb-4">
+                <div class="flex-1 bg-white p-3 rounded-xl border border-stone-200 text-center shadow-sm">
+                    <span class="text-[10px] text-stone-500 uppercase font-bold tracking-wider">Градусы</span>
+                    <div id="display-temp" class="text-xl font-bold text-amber-700 mt-1">95°C</div>
+                </div>
+                <div class="flex-1 bg-white p-3 rounded-xl border border-stone-200 text-center shadow-sm">
+                    <span class="text-[10px] text-stone-500 uppercase font-bold tracking-wider">Экспозиция</span>
+                    <div id="display-time" class="text-xl font-bold text-amber-700 mt-1">5 сек</div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <h4 class="text-xs font-bold text-stone-800 mb-1 border-b border-stone-200 pb-1 uppercase tracking-wide">Как делать</h4>
+                <p id="display-action" class="text-stone-700 text-sm leading-relaxed min-h-[70px]">
+                    Залить в типод воду с температурой около 95°C так, чтобы она лишь покрыла листья. Выдержите ровно 5 секунд и мгновенно нажмите кнопку слива, после чего вылейте этот настой в раковину. Без вариантов.
+                </p>
+            </div>
+
+            <div class="mb-5 bg-amber-50 p-3 rounded-lg border border-amber-100">
+                <span class="text-[10px] text-amber-800 uppercase font-bold block mb-1">Эффект</span>
+                <p id="display-effect" class="text-amber-900 text-xs min-h-[40px]">Эта вода не предназначена для питья. Ее задача - смыть пыль и запустить процесс.</p>
+            </div>
+
+            <div class="mt-2 border-t border-stone-100 pt-4">
+                <div class="chart-container">
+                    <canvas id="brewingChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="biohacking" class="bg-stone-900 text-stone-300 rounded-2xl p-6 shadow-xl text-sm">
+        <h2 class="text-xl font-serif-custom text-white mb-2 text-center">Биохакинг: Секреты эффекта</h2>
+        <p class="text-center text-[10px] text-stone-400 mb-5 uppercase tracking-wider">Жесткие правила для ГАМК</p>
+        
+        <div class="space-y-4">
+            <div class="flex items-start gap-3 border-b border-stone-700 pb-3">
+                <div class="text-2xl mt-1">🍽️</div>
+                <div>
+                    <h3 class="text-white font-bold mb-1">Пустой желудок</h3>
+                    <p class="text-stone-400">Пост минимум 3 часа без еды перед сессией. Это дает максимальную биодоступность аминокислот.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-3 border-b border-stone-700 pb-3">
+                <div class="text-2xl mt-1">🚫</div>
+                <div>
+                    <h3 class="text-white font-bold mb-1">Запрет на сахар</h3>
+                    <p class="text-stone-400">Глюкоза и инсулин полностью нейтрализуют седативный эффект ГАМК. Чай пьется без десертов.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-3 border-b border-stone-700 pb-3">
+                <div class="text-2xl mt-1">🥜</div>
+                <div>
+                    <h3 class="text-white font-bold mb-1">Кофакторы питания</h3>
+                    <p class="text-stone-400">Выдержанные сыры и орехи до начала 3-часового поста стимулируют выработку своей ГАМК.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-3">
+                <div class="text-2xl mt-1">🧘</div>
+                <div>
+                    <h3 class="text-white font-bold mb-1">Сет и Сеттинг</h3>
+                    <p class="text-stone-400">Эффект тормозного медиатора многократно усиливается в условиях сенсорной депривации.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="review" class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+        <h3 class="font-serif-custom text-xl font-bold text-stone-800 mb-3 text-center">Итоговый рейтинг</h3>
+        <div class="text-5xl font-bold text-amber-700 mb-1 text-center">8 <span class="text-xl text-stone-400 font-normal">/ 10</span></div>
+        <p class="text-center text-xs text-stone-500 mb-5">С поправкой на пропеченность</p>
+        
+        <div class="space-y-2 mb-5">
+            <div class="flex justify-between text-sm border-b border-stone-100 pb-1">
+                <span class="text-stone-500">Вендор</span>
+                <span class="font-bold text-stone-800 text-right">Чайная мастерская</span>
+            </div>
+            <div class="flex justify-between text-sm border-b border-stone-100 pb-1">
+                <span class="text-stone-500">Цена (50г)</span>
+                <span class="font-bold text-stone-800">1242-1400 ₽</span>
+            </div>
+            <div class="flex justify-between text-sm border-b border-stone-100 pb-1">
+                <span class="text-stone-500">Себестоимость</span>
+                <span class="font-bold text-stone-800">~ 280 ₽ (на двоих)</span>
+            </div>
+        </div>
+
+        <p class="text-sm text-stone-700 mb-3 text-left">Цена абсолютно адекватна для настоящего высокогорного Алишаня: это не дешевка из масс-маркета (300-600 руб), искусственно опрысканная ГАМК.</p>
+        <p class="text-sm text-stone-700 mb-4 text-left">Снижение балла до 8/10 обусловлено тем, что для пуристов тяжелая прожарка перекрывает тонкую весеннюю свежесть Алишаня. Но как рабочий инструмент для достижения "смайл-эффекта" - отличный выбор.</p>
+        
+        <div class="bg-red-50 p-3 rounded-lg border border-red-200 border-l-4 border-l-red-500">
+            <p class="text-red-900 text-[11px] font-semibold leading-relaxed">
+                <strong>Нюанс для свидания:</strong> Плотная копченость может показаться тяжелой новичкам. Если пошла излишняя "копченость", сливайте настой быстрее (на 5-10 сек), чтобы сохранить мягкость во вкусе.
+            </p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-[#1c1917] text-stone-500 py-6 px-4 text-center text-xs border-t border-stone-800 mt-6">
+    <p>Мобильный гид.<br>Разработано на основе отчета о заваривании ГАБА чая.</p>
+</footer>
+
+<script>
+    // Кастомный скрипт для плавного скролла с ускорением и торможением
+    document.getElementById('scroll-fab').addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.getElementById('interactive-brewing');
+        // Учитываем отступ (scroll-mt-6 = 24px)
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 24;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const duration = 1000; // 1 секунда анимации
+
+            // Функция плавности (EaseInOutCubic - медленный старт, разгон, плавное торможение)
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+
+            const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            
+            if (timeElapsed < duration) {
+                requestAnimationFrame(animation);
+            } else {
+                window.scrollTo(0, targetPosition); // Точная доводка в конце
+            }
+        }
+        requestAnimationFrame(animation);
+    });
+
+    const brewingData = [
+        {
+            temp: "95°C",
+            time: "5 сек",
+            action: "Залить в типод воду с температурой около 95°C так, чтобы она лишь покрыла листья. Выдержите ровно 5 секунд и мгновенно нажмите кнопку слива, после чего вылейте этот настой в раковину. Без вариантов.",
+            effect: "Эта вода не предназначена для питья. Ее задача - смыть пыль и запустить физический процесс гидратации."
+        },
+        {
+            temp: "90°C",
+            time: "10с + 15с",
+            action: "Пролив 1 + Пролив 2. Сделать первый пролив (10с), слить в чахай. Сразу сделать второй пролив (15с), слить туда же. Перемешать.",
+            effect: "Настой светло-янтарный. Запуск мягкого релаксирующего эффекта, подготовка рецепторов."
+        },
+        {
+            temp: "90°C",
+            time: "20с + 30с",
+            action: "Пролив 3 + Пролив 4. Сделать третий (20с) и четвертый (30с) проливы. Слить в общую емкость.",
+            effect: "Цвет темнеет до насыщенного янтарно-медного. Самая высокая концентрация ГАМК. Максимальное телесное расслабление."
+        },
+        {
+            temp: "95°C",
+            time: "45с + 80с",
+            action: "Пролив 5 + Пролив 6. Используется повышенная температура, чтобы вытянуть остаточные сахара. Завершающий этап сессии.",
+            effect: "Взрыв темных нот: табак, шоколад. Мощное, долгое послевкусие. Глубокий медитативный покой."
+        }
+    ];
+
+    const ctx = document.getElementById('brewingChart').getContext('2d');
+    const chartConfig = {
+        type: 'line',
+        data: {
+            labels: ['Пром.', 'Р1', 'Р2', 'Р3'],
+            datasets: [
+                {
+                    label: 't (°C)',
+                    data: [95, 90, 90, 95],
+                    borderColor: '#ef4444',
+                    backgroundColor: '#ef4444',
+                    yAxisID: 'y',
+                    tension: 0.3,
+                    borderWidth: 2,
+                    pointRadius: 4
+                },
+                {
+                    type: 'bar',
+                    label: 'Время (с)',
+                    data: [5, 25, 50, 125],
+                    backgroundColor: 'rgba(217, 119, 6, 0.5)',
+                    borderColor: '#d97706',
+                    borderWidth: 1,
+                    yAxisID: 'y1',
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { position: 'top', labels: { boxWidth: 10, font: { size: 10 } } }
+            },
+            scales: {
+                x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+                y: { type: 'linear', position: 'left', min: 80, max: 100, ticks: { font: { size: 10 } } },
+                y1: { type: 'linear', position: 'right', min: 0, max: 150, grid: { drawOnChartArea: false }, ticks: { font: { size: 10 } } }
+            }
+        }
+    };
+    const brewingChart = new Chart(ctx, chartConfig);
+
+    const buttons = document.querySelectorAll('.step-btn');
+    const displayTemp = document.getElementById('display-temp');
+    const displayTime = document.getElementById('display-time');
+    const displayAction = document.getElementById('display-action');
+    const displayEffect = document.getElementById('display-effect');
+
+    function updateUI(stepIndex) {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        buttons[stepIndex].classList.add('active');
+
+        const data = brewingData[stepIndex];
+        const displayAreas = [displayTemp, displayTime, displayAction, displayEffect];
+        
+        displayAreas.forEach(el => el.style.opacity = '0.3');
+
+        setTimeout(() => {
+            displayTemp.textContent = data.temp;
+            displayTime.textContent = data.time;
+            displayAction.textContent = data.action;
+            displayEffect.textContent = data.effect;
+            displayAreas.forEach(el => {
+                el.style.opacity = '1';
+                el.style.transition = 'opacity 0.2s ease-in';
+            });
+        }, 150);
+    }
+
+    buttons.forEach((btn, index) => {
+        btn.addEventListener('click', () => updateUI(index));
+    });
+</script>
+</body>
+</html>
